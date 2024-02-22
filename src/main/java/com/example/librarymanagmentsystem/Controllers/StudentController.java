@@ -1,6 +1,7 @@
 package com.example.librarymanagmentsystem.Controllers;
 
 import com.example.librarymanagmentsystem.Entities.Student;
+import com.example.librarymanagmentsystem.RequestDocs.ModifyPhoneNoRequest;
 import com.example.librarymanagmentsystem.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,11 @@ public class StudentController {
         }
     }
 
-
+    @PutMapping("/modifyPhoneNo")
+    public String modifyPhoneNo(@RequestBody ModifyPhoneNoRequest phoneReq)
+    {
+        String result = studentService.modifyPhoneNo(phoneReq);
+        return result;
+    }
 
 }
