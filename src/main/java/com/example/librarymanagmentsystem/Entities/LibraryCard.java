@@ -1,6 +1,7 @@
 package com.example.librarymanagmentsystem.Entities;
 
 import com.example.librarymanagmentsystem.Enums.CardStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -54,6 +55,7 @@ public class LibraryCard {
         this.student = student;
     }
 
+    @JsonIgnore
     @JoinColumn
     @OneToOne
     private Student student;

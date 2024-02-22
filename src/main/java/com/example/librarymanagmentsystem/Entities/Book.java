@@ -1,6 +1,7 @@
 package com.example.librarymanagmentsystem.Entities;
 
 import com.example.librarymanagmentsystem.Enums.Genre;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class Book {
 
     private boolean avilabelStatus;
 
+    @JsonIgnore
     @JoinColumn(name = "emailId")
     @ManyToOne
     private Author author;

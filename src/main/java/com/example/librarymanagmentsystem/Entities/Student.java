@@ -1,5 +1,6 @@
 package com.example.librarymanagmentsystem.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -64,6 +65,7 @@ public class Student {
         this.phoneNo = phoneNo;
     }
 
+    @JsonIgnore
     @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
     private LibraryCard libraryCard;
 }

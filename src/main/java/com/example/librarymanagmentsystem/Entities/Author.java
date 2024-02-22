@@ -1,5 +1,6 @@
 package com.example.librarymanagmentsystem.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,6 +34,7 @@ public class Author {
     private int noOfBooksWritten;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Book> bookList = new ArrayList<>();
 
