@@ -8,7 +8,9 @@ import lombok.Setter;
 
 //import java.sql.Date;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,10 +25,15 @@ public class Author {
     private Integer authorId;
     private int authorAge;
     private String authorName;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String emailId;
 
     private int age;
 
+    private int noOfBooksWritten;
+
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Book> bookList = new ArrayList<>();
 
 }

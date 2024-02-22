@@ -15,8 +15,8 @@ public class StudentService {
 
     public String addStudent(Student student)
     {
-       studentRepo.save(student);
-       return " Student has been added to Table";
+       Student student1 = studentRepo.save(student);
+       return " Student has been added to Table " + student1.getStudentId();
     }
 
     public Student findStudentById(Integer studentId) throws Exception{

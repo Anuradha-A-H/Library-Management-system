@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(name = "card")
+@RequestMapping(value = "card")
 public class CardController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class CardController {
     }
 
     @PutMapping("/associateCardAndStudent")
-    public ResponseEntity associateCardandStudent(@RequestParam("cardId")Integer cardId, @RequestParam("studentId") Integer studentId)
+    public ResponseEntity associateCardAndStudent( @RequestParam("studentId") Integer studentId, @RequestParam("cardId")Integer cardId)
     {
         try{
             String result = cardService.associateCardAndStudent(studentId,cardId);

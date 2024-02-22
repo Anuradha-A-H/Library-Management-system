@@ -22,7 +22,7 @@ public class StudentController {
 
     }
 
-
+    @GetMapping("/findById")
     public ResponseEntity findStudentById(@RequestParam("studentId") Integer studentId)
     {
         try{
