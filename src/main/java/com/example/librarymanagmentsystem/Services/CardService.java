@@ -21,7 +21,7 @@ public class CardService {
 
         LibraryCard newCard = new LibraryCard();
         newCard.setCardStatus(CardStatus.NEW);
-        newCard.setNoOfCardIssued(0);
+        newCard.setNoOfBookIssued(0);
 
         LibraryCard savedCard = cardRepo.save(newCard);
 
@@ -51,8 +51,26 @@ public class CardService {
 
         libraryCard.setCardStatus(CardStatus.ACTIVE);
         libraryCard.setStudent(student);
-        libraryCard.setNoOfCardIssued(0);
+        libraryCard.setNoOfBookIssued(0);
         cardRepo.save(libraryCard);
         return "card with cardId "+ cardId+" and student id"+studentId;
+    }
+
+
+    public LibraryCard getCard(Integer cardId)throws Exception{
+            Optional<LibraryCard> cardDtails = cardRepo.findById(cardId);
+            if(cardDtails.isEmpty())
+            {
+                throw new Exception("Invalid card Id");
+            }
+            LibraryCard card = cardDtails.get();
+
+            Integer CardId = card.getCardId();
+
+            Student studentDetail = card.getStudent();
+
+            Integer studentId = studentDetail.getStudentId();
+
+            return card;
     }
 }

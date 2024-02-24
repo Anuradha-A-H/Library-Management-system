@@ -1,5 +1,6 @@
 package com.example.librarymanagmentsystem.Controllers;
 
+import com.example.librarymanagmentsystem.Entities.LibraryCard;
 import com.example.librarymanagmentsystem.Services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,5 +30,19 @@ public class CardController {
         }catch(Exception e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/getCard")
+    public ResponseEntity getCard(@RequestParam("/cardId")Integer cardId)
+    {
+        try{
+
+
+            LibraryCard card = cardService.getCard(cardId);
+            return new ResponseEntity(card,HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+
     }
 }

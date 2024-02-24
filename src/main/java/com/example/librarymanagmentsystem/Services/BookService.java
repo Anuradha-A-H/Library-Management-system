@@ -8,6 +8,8 @@ import com.example.librarymanagmentsystem.RequestDocs.AddBookRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,9 +39,12 @@ public class BookService {
 ////        //adding book to auth entity
         newBook.setAuthor(authdetails);
 ////
+        List<Book> bookl = authdetails.getBookList();
+        bookl.add(newBook);
+        authdetails.setBookList(bookl);
 ////        //set Foreighkey for auth
 ////        //for the auth add the book in the book list
-        authdetails.getBookList().add(newBook);//bidirectional mapping
+//        //bidirectional mapping
         authdetails.setNoOfBooksWritten(authdetails.getNoOfBooksWritten()+1);
 ////
 ////
@@ -47,5 +52,15 @@ public class BookService {
         authRepo.save(authdetails);
 
         return "done successfully";
+    }
+
+    public Book getBook(Integer bookId)throws Exception
+    {
+        Optional<Book> bookDetails = bookRepo.findById(bookId);
+        if(bookDetails.isEmpty())
+        {
+            throw new Exception("Invalid Id");
+        }
+        return bookDetails.get();
     }
 }

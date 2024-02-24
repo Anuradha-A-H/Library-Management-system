@@ -26,7 +26,7 @@ public class StudentController {
     @GetMapping("/findById")
     public ResponseEntity findStudentById(@RequestParam("studentId") Integer studentId)throws Exception
     {
-        System.out.println(studentId);
+
         try{
             Student student = studentService.findStudentById(studentId);
             return new ResponseEntity(student,HttpStatus.OK);

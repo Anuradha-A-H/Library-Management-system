@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,6 +39,9 @@ public class Book {
     @JoinColumn(name = "emailId")
     @ManyToOne
     private Author author;
+
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    public List<Transactions> transactionList = new ArrayList<>();
 
     public Book(String bookName, Genre bookGenre, int noOfPages, int price, Date publishDate) {
         this.bookName = bookName;
@@ -100,5 +105,13 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 }

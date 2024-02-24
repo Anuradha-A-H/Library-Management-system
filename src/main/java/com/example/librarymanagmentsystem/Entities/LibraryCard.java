@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 
 @NoArgsConstructor
@@ -16,12 +19,13 @@ import lombok.Setter;
 @Setter
 @Table(name="library_card")
 public class LibraryCard {
+    public static final Integer MAX_NO_OF_ALLOWED_BOOKS = 8;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cardId;
     @Enumerated(value = EnumType.STRING)
     private CardStatus cardStatus;
-    private int noOfCardIssued;
+    private int noOfBookIssued;
 
     public Integer getCardId() {
         return cardId;
@@ -39,12 +43,12 @@ public class LibraryCard {
         this.cardStatus = cardStatus;
     }
 
-    public int getNoOfCardIssued() {
-        return noOfCardIssued;
+    public int getNoOfBookIssued() {
+        return noOfBookIssued;
     }
 
-    public void setNoOfCardIssued(int noOfCardIssued) {
-        this.noOfCardIssued = noOfCardIssued;
+    public void setNoOfBookIssued(int noOfBookIssued) {
+        this.noOfBookIssued = noOfBookIssued;
     }
 
     public Student getStudent() {
@@ -59,4 +63,7 @@ public class LibraryCard {
     @JoinColumn
     @OneToOne
     private Student student;
+
+    @OneToMany(mappedBy = "libraryCard",cascade = CascadeType.ALL)
+    public List<Transactions> transactionList = new ArrayList<>();
 }
